@@ -3,8 +3,6 @@ import requests
 from datetime import date
 import pandas as pd
 import altair as alt
-import sys
-from streamlit import cli as stcli
 
 def main():
     st.set_page_config(page_title="Gasreserven Europa", page_icon="🇪🇺", layout="centered")
@@ -166,10 +164,5 @@ def main():
     st.markdown("""----""")
     st.write("Datenquelle: https://agsi.gie.eu/")
 
-
-if __name__ == '__main__':
-    if st._is_running_with_streamlit:
-        main()
-    else:
-        sys.argv = ["streamlit", "run", sys.argv[0]]
-        sys.exit(stcli.main())
+if __name__ == "__main__":
+  main()
