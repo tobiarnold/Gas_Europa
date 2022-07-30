@@ -7,7 +7,7 @@ import altair as alt
 def main():
     st.set_page_config(page_title="Gasreserven Europa", page_icon="🇪🇺", layout="centered")
     st.title("🇪🇺 Gasreserven Europa")
-    st.write("Die folgende Anwendung greift auf die API des AGSI (Aggregated Gas Storage Inventory) zu.")
+    st.write("Die folgende Anwendung greift auf die API des AGSI (Aggregated Gas Storage Inventory) zu und gibt die Gasfüllstände zurück.")
     st.markdown("""----""")
     st.subheader("💡 Parameter auswählen")
     #st.write("Parameter auswählen")
