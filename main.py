@@ -1,6 +1,6 @@
 import streamlit as st
 import requests
-from datetime import date, timedelta
+from datetime import date #timedelta
 import pandas as pd
 import altair as alt
 
@@ -55,7 +55,8 @@ def main():
     try:
         start_end = st.slider(
             "Start und Enddatum?",
-            date(2021, 1, 1), date.today(), (date.today()-timedelta(days=365), date.today()),format="DD/MM/YY")
+            date(2021, 1, 1), date.today(), (date(2021, 1, 1), date.today()),format="DD/MM/YY")
+        #(date.today()-timedelta(days=365), date.today())
         size = (int((start_end[-1] - start_end[0]).days))
         differenz=size
         if size >= 300:
