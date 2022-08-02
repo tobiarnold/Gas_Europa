@@ -63,7 +63,7 @@ def main():
             size = 300
         elif size<300:
             size=size
-        if size < 300 and land !="eu":
+                if size < 300 and land !="eu":
             headers = {"x-key": "38babf682b901932a802d667aa2085c4"}
             url1 = (r"https://agsi.gie.eu/api?country=" + land + "&from=" + str(start_end[0]) + "&to=" + str(start_end[-1]) + "&page=1&size=" + str(size))
             r1 = requests.get(url1, headers=headers)
@@ -71,11 +71,13 @@ def main():
             json_data1 = data1["data"]
             df1 = pd.DataFrame.from_dict(json_data1)
             df = df1
-        elif size >= 300 and land !="eu":
+        elif size >= 300 and size <=600 and land !="eu":
             headers = {"x-key": "38babf682b901932a802d667aa2085c4"}
-            url1 = (r"https://agsi.gie.eu/api?country=" + land + "&from=" + str(start_end[0]) + "&to=" + str(start_end[-1]) + "&page=1&size=" + str(size))
-            size_page2 = (int((start_end[-1] - start_end[0]).days) - 300)
-            url2 = (r"https://agsi.gie.eu/api?country=" + land + "&from" + str(start_end[0]) + "&to=" + str(start_end[-1]) + "&page=2&size=" + str(size_page2))
+            url1 = (r"https://agsi.gie.eu/api?country=" + land + "&from=" + str(start_end[0]) + "&to=" + str(
+                start_end[-1]) + "&page=1&size=" + str(size))
+            last_page = (int((start_end[-1] - start_end[0]).days) - 300)
+            url2 = (r"https://agsi.gie.eu/api?country=" + land + "&from" + str(start_end[0]) + "&to=" + str(
+                start_end[-1]) + "&page=2&size=" + str(last_page))
             r1 = requests.get(url1, headers=headers)
             r2 = requests.get(url2, headers=headers)
             data1 = r1.json()
@@ -86,6 +88,29 @@ def main():
             df2 = pd.DataFrame.from_dict(json_data2)
             frames = [df1, df2]
             df = pd.concat(frames)
+        elif size >600 and land != "eu":
+            headers = {"x-key": "38babf682b901932a802d667aa2085c4"}
+            url1 = (r"https://agsi.gie.eu/api?country=" + land + "&from=" + str(start_end[0]) + "&to=" + str(
+                start_end[-1]) + "&page=1&size=" + str(size))
+            url2 = (r"https://agsi.gie.eu/api?country=" + land + "&from=" + str(start_end[0]) + "&to=" + str(
+                start_end[-1]) + "&page=2&size=" + str(size))
+            last_page = (int((start_end[-1] - start_end[0]).days) - 300)
+            url3 = (r"https://agsi.gie.eu/api?country=" + land + "&from" + str(start_end[0]) + "&to=" + str(
+                start_end[-1]) + "&page=2&size=" + str(last_page))
+            r1 = requests.get(url1, headers=headers)
+            r2 = requests.get(url2, headers=headers)
+            r3 = requests.get(url3, headers=headers)
+            data1 = r1.json()
+            data2 = r2.json()
+            data3 = r3.json()
+            json_data1 = data1["data"]
+            json_data2 = data2["data"]
+            json_data3 = data3["data"]
+            df1 = pd.DataFrame.from_dict(json_data1)
+            df2 = pd.DataFrame.from_dict(json_data2)
+            df3 = pd.DataFrame.from_dict(json_data3)
+            frames = [df1, df2, df3]
+            df = pd.concat(frames)
         elif size < 300 and land =="eu":
             headers = {"x-key": "38babf682b901932a802d667aa2085c4"}
             url1 = (r"https://agsi.gie.eu/api?type=" + land + "&from=" + str(start_end[0]) + "&to=" + str(start_end[-1]) + "&page=1&size=" + str(size))
@@ -94,11 +119,11 @@ def main():
             json_data1 = data1["data"]
             df1 = pd.DataFrame.from_dict(json_data1)
             df = df1
-        elif size >= 300 and land =="eu":
+        elif size >= 300 and size <=600 and land =="eu":
             headers = {"x-key": "38babf682b901932a802d667aa2085c4"}
             url1 = (r"https://agsi.gie.eu/api?type=" + land + "&from=" + str(start_end[0]) + "&to=" + str(start_end[-1]) + "&page=1&size=" + str(size))
-            size_page2 = (int((start_end[-1] - start_end[0]).days) - 300)
-            url2 = (r"https://agsi.gie.eu/api?type=" + land + "&from" + str(start_end[0]) + "&to=" + str(start_end[-1]) + "&page=2&size=" + str(size_page2))
+            last_page = (int((start_end[-1] - start_end[0]).days) - 300)
+            url2 = (r"https://agsi.gie.eu/api?type=" + land + "&from" + str(start_end[0]) + "&to=" + str(start_end[-1]) + "&page=2&size=" + str(last_page))
             r1 = requests.get(url1, headers=headers)
             r2 = requests.get(url2, headers=headers)
             data1 = r1.json()
@@ -108,6 +133,29 @@ def main():
             df1 = pd.DataFrame.from_dict(json_data1)
             df2 = pd.DataFrame.from_dict(json_data2)
             frames = [df1, df2]
+            df = pd.concat(frames)
+        elif size > 600 and land == "eu":
+            headers = {"x-key": "38babf682b901932a802d667aa2085c4"}
+            url1 = (r"https://agsi.gie.eu/api?type=" + land + "&from=" + str(start_end[0]) + "&to=" + str(
+                start_end[-1]) + "&page=1&size=" + str(size))
+            url2 = (r"https://agsi.gie.eu/api?type=" + land + "&from=" + str(start_end[0]) + "&to=" + str(
+                start_end[-1]) + "&page=2&size=" + str(size))
+            last_page = (int((start_end[-1] - start_end[0]).days) - 300)
+            url3 = (r"https://agsi.gie.eu/api?type=" + land + "&from" + str(start_end[0]) + "&to=" + str(
+                start_end[-1]) + "&page=2&size=" + str(last_page))
+            r1 = requests.get(url1, headers=headers)
+            r2 = requests.get(url2, headers=headers)
+            r3 = requests.get(url3, headers=headers)
+            data1 = r1.json()
+            data2 = r2.json()
+            data3 = r3.json()
+            json_data1 = data1["data"]
+            json_data2 = data2["data"]
+            json_data3 = data3["data"]
+            df1 = pd.DataFrame.from_dict(json_data1)
+            df2 = pd.DataFrame.from_dict(json_data2)
+            df3 = pd.DataFrame.from_dict(json_data3)
+            frames = [df1, df2, df3]
             df = pd.concat(frames)
         df = df.reset_index()
         df.drop(["index","name", "url", "info", "code", "consumption", "consumptionFull", "workingGasVolume","injectionCapacity", "withdrawalCapacity", "status"], axis=1, inplace=True)
