@@ -63,7 +63,7 @@ def main():
             size = 300
         elif size<300:
             size=size
-                if size < 300 and land !="eu":
+        if size < 300 and land !="eu":
             headers = {"x-key": "38babf682b901932a802d667aa2085c4"}
             url1 = (r"https://agsi.gie.eu/api?country=" + land + "&from=" + str(start_end[0]) + "&to=" + str(start_end[-1]) + "&page=1&size=" + str(size))
             r1 = requests.get(url1, headers=headers)
