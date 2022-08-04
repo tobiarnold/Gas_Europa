@@ -199,7 +199,7 @@ def main():
                                                                                    tooltip=["Datum (J-M-T):T",
                                                                                             "Füllstand in %:Q"]).interactive()
         st.altair_chart(line, use_container_width=True)
-        base = alt.Chart(df.reset_index()).encode(x="Datum (J-M-T):T")
+        base = alt.Chart(df_diagram.reset_index()).encode(x="Datum (J-M-T):T")
         line = alt.layer(
             base.mark_line().encode(y="Zufluss in GWh/d", color=alt.value("#4ee44e"),
                                     tooltip=["Datum (J-M-T)", "Zufluss in GWh/d"]).interactive(),
@@ -207,7 +207,7 @@ def main():
                                     tooltip=["Datum (J-M-T)", "Abfluss in GWh/d"]).interactive()
             .properties(title="Zufluss und Abfluss des Gas"))
         st.altair_chart(line, use_container_width=True)
-        line = alt.Chart(df, title="Differenz Zu- und Abflüsse").mark_bar().encode(x="Datum (J-M-T):T",
+        line = alt.Chart(df_diagram, title="Differenz Zu- und Abflüsse").mark_bar().encode(x="Datum (J-M-T):T",
                                                                                    y="Differnz Zu- und Abfluss in GWh/d",
                                                                                    color=alt.value("#1F77B4"),
                                                                                    tooltip=["Datum (J-M-T):T",
