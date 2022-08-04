@@ -1,6 +1,6 @@
 import streamlit as st
 import requests
-from datetime import date #timedelta
+from datetime import date, timedelta
 import pandas as pd
 import altair as alt
 
@@ -9,6 +9,8 @@ def main():
     st.title("🇪🇺 Gasfüllstände Europa")
     #st.write("Die folgende Anwendung greift auf die API des AGSI (Aggregated Gas Storage Inventory) zu und gibt die Gasfüllstände zurück.")
     st.write("Die folgende Anwendung gibt die Gasfüllstände verschiedener europäischer Länder zurück.")
+    st.write("Es können maximal die letzten 900 Tage ausgehend vom heutigen Datum betrachtet werden")
+    st.write("Standardmäßig ist als Betrachtungszeitraum die letzten 365 Tage eingestellt")
     st.markdown("""----""")
     st.subheader("💡 Parameter auswählen")
     #st.write("Parameter auswählen")
@@ -55,8 +57,7 @@ def main():
     try:
         start_end = st.slider(
             "Start und Enddatum?",
-            date(2021, 1, 1), date.today(), (date(2021, 1, 1), date.today()),format="DD/MM/YY")
-        #(date.today()-timedelta(days=365), date.today())
+            (date.today()-timedelta(days=900), date.today(), (date.today()-timedelta(days=365), date.today()),format="DD/MM/YY")
         size = (int((start_end[-1] - start_end[0]).days))
         differenz=size
         if size >= 300:
