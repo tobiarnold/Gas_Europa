@@ -192,7 +192,7 @@ def main():
             st.write("Datentabelle ist ausgeblendet.")
         st.markdown("""---""")
         st.subheader("📊 Diagramme")
-        line = alt.Chart(df, title="Gasvorräte Füllstand in %").mark_line().encode(x="Datum (J-M-T):T",
+        line = alt.Chart(df_show, title="Gasvorräte Füllstand in %").mark_line().encode(x="Datum (J-M-T):T",
                                                                                    y="Füllstand in %",
                                                                                    color=alt.value("#1F77B4"),
                                                                                    tooltip=["Datum (J-M-T):T",
