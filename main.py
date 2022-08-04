@@ -95,7 +95,7 @@ def main():
                 start_end[-1]) + "&page=1&size=" + str(size))
             url2 = (r"https://agsi.gie.eu/api?country=" + land + "&from=" + str(start_end[0]) + "&to=" + str(
                 start_end[-1]) + "&page=2&size=" + str(size))
-            last_page = (int((start_end[-1] - start_end[0]).days) - 300)
+            last_page = (int((start_end[-1] - start_end[0]).days) - 600)
             url3 = (r"https://agsi.gie.eu/api?country=" + land + "&from" + str(start_end[0]) + "&to=" + str(
                 start_end[-1]) + "&page=2&size=" + str(last_page))
             r1 = requests.get(url1, headers=headers)
@@ -141,7 +141,7 @@ def main():
                 start_end[-1]) + "&page=1&size=" + str(size))
             url2 = (r"https://agsi.gie.eu/api?type=" + land + "&from=" + str(start_end[0]) + "&to=" + str(
                 start_end[-1]) + "&page=2&size=" + str(size))
-            last_page = (int((start_end[-1] - start_end[0]).days) - 300)
+            last_page = (int((start_end[-1] - start_end[0]).days) - 600)
             url3 = (r"https://agsi.gie.eu/api?type=" + land + "&from" + str(start_end[0]) + "&to=" + str(
                 start_end[-1]) + "&page=2&size=" + str(last_page))
             r1 = requests.get(url1, headers=headers)
