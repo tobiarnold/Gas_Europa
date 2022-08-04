@@ -9,9 +9,9 @@ def main():
     st.title("🇪🇺 Gasfüllstände Europa")
     #st.write("Die folgende Anwendung greift auf die API des AGSI (Aggregated Gas Storage Inventory) zu und gibt die Gasfüllstände zurück.")
     st.write("""
-    -Die folgende Anwendung gibt die Gasfüllstände verschiedener europäischer Länder zurück.
-    -Es können maximal die letzten 900 Tage ausgehend vom heutigen Datum betrachtet werden
-    -Standardmäßig sind als Betrachtungszeitraum die letzten 365 Tage eingestellt
+    - Die folgende Anwendung gibt die Gasfüllstände verschiedener europäischer Länder zurück.
+    - Es können maximal die letzten 900 Tage ausgehend vom heutigen Datum betrachtet werden
+    - Standardmäßig sind als Betrachtungszeitraum die letzten 365 Tage eingestellt
     """)
     st.markdown("""----""")
     st.subheader("💡 Parameter auswählen")
