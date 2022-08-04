@@ -79,8 +79,7 @@ def main():
             url1 = (r"https://agsi.gie.eu/api?country=" + land + "&from=" + str(start_end[0]) + "&to=" + str(
                 start_end[-1]) + "&page=1&size=" + str(size))
             last_page = (int((start_end[-1] - start_end[0]).days) - 300)
-            url2 = (r"https://agsi.gie.eu/api?country=" + land + "&from" + str(start_end[0]) + "&to=" + str(
-                start_end[-1]) + "&page=2&size=" + str(last_page))
+            url2 = (r"https://agsi.gie.eu/api?country=" + land + "&from" + str(start_end[0]-timedelta(days=302)) + "&to=" + str(start_end[-1]-timedelta(days=302)) + "&page=1&size=" + str(last_page))
             r1 = requests.get(url1, headers=headers)
             r2 = requests.get(url2, headers=headers)
             data1 = r1.json()
