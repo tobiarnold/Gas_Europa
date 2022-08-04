@@ -8,9 +8,11 @@ def main():
     st.set_page_config(page_title="Gasfüllstände Europa", page_icon="🇪🇺", layout="centered")
     st.title("🇪🇺 Gasfüllstände Europa")
     #st.write("Die folgende Anwendung greift auf die API des AGSI (Aggregated Gas Storage Inventory) zu und gibt die Gasfüllstände zurück.")
-    st.write("Die folgende Anwendung gibt die Gasfüllstände verschiedener europäischer Länder zurück.")
-    st.write("Es können maximal die letzten 900 Tage ausgehend vom heutigen Datum betrachtet werden")
-    st.write("Standardmäßig ist als Betrachtungszeitraum die letzten 365 Tage eingestellt")
+    st.write("""
+    -Die folgende Anwendung gibt die Gasfüllstände verschiedener europäischer Länder zurück.
+    -Es können maximal die letzten 900 Tage ausgehend vom heutigen Datum betrachtet werden
+    -Standardmäßig sind als Betrachtungszeitraum die letzten 365 Tage eingestellt
+    """)
     st.markdown("""----""")
     st.subheader("💡 Parameter auswählen")
     #st.write("Parameter auswählen")
