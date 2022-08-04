@@ -168,6 +168,7 @@ def main():
         cols = ["Gasvorrat in TWh", "Zufluss in GWh/d", "Abfluss in GWh/d", "Füllstand in %", "Trend in %"]
         df[cols] = df[cols].apply(pd.to_numeric, errors="coerce", axis=1)
         df["Differnz Zu- und Abfluss in GWh/d"]=df["Zufluss in GWh/d"]-df["Abfluss in GWh/d"]
+        df_diagram=df
         tabelle = st.radio("Datentabelle ein- oder ausblenden",("Einblenden", "Ausblenden"))
            # submitted = st.form_submit_button("Eingaben übernehmen")
         st.markdown("""---""")
@@ -192,7 +193,7 @@ def main():
             st.write("Datentabelle ist ausgeblendet.")
         st.markdown("""---""")
         st.subheader("📊 Diagramme")
-        line = alt.Chart(df_show, title="Gasvorräte Füllstand in %").mark_line().encode(x="Datum (J-M-T):T",
+        line = alt.Chart(df_diagram, title="Gasvorräte Füllstand in %").mark_line().encode(x="Datum (J-M-T):T",
                                                                                    y="Füllstand in %",
                                                                                    color=alt.value("#1F77B4"),
                                                                                    tooltip=["Datum (J-M-T):T",
