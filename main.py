@@ -64,7 +64,7 @@ def main():
             size = 300
         elif size<300:
             size=size
-        if size < 300 and land !="eu":
+        if differenz < 300 and land !="eu":
             headers = {"x-key": "38babf682b901932a802d667aa2085c4"}
             url1 = (r"https://agsi.gie.eu/api?country=" + land + "&from=" + str(start_end[0]) + "&to=" + str(start_end[-1]) + "&page=1&size=" + str(size))
             r1 = requests.get(url1, headers=headers)
@@ -72,7 +72,7 @@ def main():
             json_data1 = data1["data"]
             df1 = pd.DataFrame.from_dict(json_data1)
             df = df1
-        elif size >= 300 and size <=600 and land !="eu":
+        elif differenz >= 300 and differenz <=600 and land !="eu":
             headers = {"x-key": "38babf682b901932a802d667aa2085c4"}
             url1 = (r"https://agsi.gie.eu/api?country=" + land + "&from=" + str(start_end[0]) + "&to=" + str(
                 start_end[-1]) + "&page=1&size=" + str(size))
@@ -89,7 +89,7 @@ def main():
             df2 = pd.DataFrame.from_dict(json_data2)
             frames = [df1, df2]
             df = pd.concat(frames)
-        elif size >600 and land != "eu":
+        elif differenz >600 and land != "eu":
             headers = {"x-key": "38babf682b901932a802d667aa2085c4"}
             url1 = (r"https://agsi.gie.eu/api?country=" + land + "&from=" + str(start_end[0]) + "&to=" + str(
                 start_end[-1]) + "&page=1&size=" + str(size))
@@ -112,7 +112,7 @@ def main():
             df3 = pd.DataFrame.from_dict(json_data3)
             frames = [df1, df2, df3]
             df = pd.concat(frames)
-        elif size < 300 and land =="eu":
+        elif differenz < 300 and land =="eu":
             headers = {"x-key": "38babf682b901932a802d667aa2085c4"}
             url1 = (r"https://agsi.gie.eu/api?type=" + land + "&from=" + str(start_end[0]) + "&to=" + str(start_end[-1]) + "&page=1&size=" + str(size))
             r1 = requests.get(url1, headers=headers)
@@ -120,7 +120,7 @@ def main():
             json_data1 = data1["data"]
             df1 = pd.DataFrame.from_dict(json_data1)
             df = df1
-        elif size >= 300 and size <=600 and land =="eu":
+        elif differenz >= 300 and differenz <=600 and land =="eu":
             headers = {"x-key": "38babf682b901932a802d667aa2085c4"}
             url1 = (r"https://agsi.gie.eu/api?type=" + land + "&from=" + str(start_end[0]) + "&to=" + str(start_end[-1]) + "&page=1&size=" + str(size))
             last_page = (int((start_end[-1] - start_end[0]).days) - 300)
@@ -135,7 +135,7 @@ def main():
             df2 = pd.DataFrame.from_dict(json_data2)
             frames = [df1, df2]
             df = pd.concat(frames)
-        elif size > 600 and land == "eu":
+        elif differenz > 600 and land == "eu":
             headers = {"x-key": "38babf682b901932a802d667aa2085c4"}
             url1 = (r"https://agsi.gie.eu/api?type=" + land + "&from=" + str(start_end[0]) + "&to=" + str(
                 start_end[-1]) + "&page=1&size=" + str(size))
