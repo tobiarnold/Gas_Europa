@@ -57,7 +57,7 @@ def main():
     try:
         start_end = st.slider(
             "Start und Enddatum?",
-            (date.today()-timedelta(days=900), date.today(), (date.today()-timedelta(days=365), date.today()),format="DD/MM/YY")
+            (date.today()-timedelta(days=900)), date.today(), (date.today()-timedelta(days=365), date.today()),format="DD/MM/YY")
         size = (int((start_end[-1] - start_end[0]).days))
         differenz=size
         if size >= 300:
