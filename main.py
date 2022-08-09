@@ -3,13 +3,14 @@ import requests
 from datetime import date, timedelta
 import pandas as pd
 import altair as alt
+import yfinance as yf
 
 def main():
     st.set_page_config(page_title="Gasfüllstände Europa", page_icon="🇪🇺", layout="centered")
     st.title("🇪🇺 Gasfüllstände Europa")
     #st.write("Die folgende Anwendung greift auf die API des AGSI (Aggregated Gas Storage Inventory) zu und gibt die Gasfüllstände zurück.")
     st.write("""
-    - Die folgende Anwendung gibt die Gasfüllstände verschiedener europäischer Länder zurück.
+    - Die folgende Anwendung gibt die Gasfüllstände verschiedener europäischer Länder und den Erdgaspreis am Weltmarkt zurück.
     - Es können maximal die letzten 900 Tage ausgehend vom heutigen Datum betrachtet werden
     - Standardmäßig sind als Betrachtungszeitraum die letzten 365 Tage eingestellt
     """)
@@ -212,8 +213,20 @@ def main():
         st.altair_chart(line, use_container_width=True)
     except:
         st.write("⚠️Bitte andere Parameter wählen")
-    st.markdown("""----""")
-    st.write("Datenquelle: https://agsi.gie.eu/")
+    try:
+        natural_gas = yf.download("NG=F", start=start_end[0], end=start_end[-1])["Adj Close"]
+        natural_gas=natural_gas.to_frame()
+        natural_gas["Date"] = natural_gas.index
+        natural_gas["Date"] = pd.to_datetime( natural_gas["Date"], format="%Y-%m-%d").dt.date
+        natural_gas=natural_gas.rename(columns={"Date": "Datum (J-M-T)", "Adj Close": "Schlusskurs in US$"})
+        line = alt.Chart(natural_gas, title="Erdgaspreis in US$").mark_line().encode(x="Datum (J-M-T):T", y="Schlusskurs in US$",
+                                                                                 color=alt.value("#cc0000"),
+                                                                               tooltip=["Datum (J-M-T):T",
+                                                                                       "Schlusskurs in US$:Q"]).interactive()
+        st.altair_chart(line, use_container_width=True)
+    except:
+        st.write("⚠️Bitte andere Parameter wählen")
+    st.write("Datenquelle: https://agsi.gie.eu/ und https://finance.yahoo.com/quote/NG%3DF/")
 
 if __name__ == "__main__":
   main()
