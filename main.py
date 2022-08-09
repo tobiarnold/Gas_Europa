@@ -1,9 +1,10 @@
 import streamlit as st
+import yfinance as yf
 import requests
 from datetime import date, timedelta
 import pandas as pd
 import altair as alt
-import yfinance as yf
+
 
 def main():
     st.set_page_config(page_title="Gasfüllstände Europa", page_icon="🇪🇺", layout="centered")
