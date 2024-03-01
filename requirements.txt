@@ -1,5 +1,5 @@
-streamlit
-requests 
-pandas 
-altair 
-yfinance
+streamlit == 1.31.1
+requests == 2.31.0
+pandas == 2.2.1
+altair == 5.2.0
+yfinance == 0.2.37
