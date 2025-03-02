@@ -186,7 +186,7 @@ def main():
                                        "Trend in %": "{:,.2f}",
                                        "Füllstand in %": "{:,.2f}",
                                        "Differnz Zu- und Abfluss in GWh/d": "{:,.2f}"}) \
-                .applymap(style1, subset=["Trend in %"])
+                .map(style1, subset=["Trend in %"])
             st.dataframe(df_show)
         else:
             st.write("Datentabelle ist ausgeblendet.")
