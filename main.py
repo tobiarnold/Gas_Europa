@@ -216,18 +216,22 @@ def main():
         st.write("⚠️Bitte andere Parameter wählen")
     try:
         natural_gas = yf.download("NG=F", start=start_end[0], end=start_end[-1])[["Close"]]
+        natural_gas["Datum (J-M-T)"] = pd.to_datetime(natural_gas.index)
+        natural_gas.columns = [col[0] for col in natural_gas.columns]  # Nur den ersten Level behalten
+        natural_gas = natural_gas.rename(columns={"Close": "Schlusskurs in US$"})
+        natural_gas["Datum (J-M-T)"] = pd.to_datetime(natural_gas.index)
         #natural_gas=natural_gas.to_frame()
         #natural_gas["Date"] = natural_gas.index
         #natural_gas["Date"] = pd.to_datetime( natural_gas["Date"], format="%Y-%m-%d").dt.date
-        natural_gas["Datum (J-M-T)"] = pd.to_datetime(natural_gas.index)
-        natural_gas.columns = [col[0] for col in natural_gas.columns]
-        natural_gas = natural_gas.rename(columns={"Close": "Schlusskurs in US$"})
-        natural_gas["Datum (J-M-T)"] = pd.to_datetime(natural_gas.index)
         #natural_gas=natural_gas.rename(columns={"Date": "Datum (J-M-T)", "Close": "Schlusskurs in US$"})
-        line = alt.Chart(natural_gas, title="Erdgaspreis in US$").mark_line().encode(x="Datum (J-M-T):T", y="Schlusskurs in US$::Q",
-                                                                                 color=alt.value("#cc0000"),
-                                                                               tooltip=["Datum (J-M-T):T",
-                                                                                       "Schlusskurs in US$:Q"]).interactive()
+        line = (
+        alt.Chart(natural_gas, title="Erdgaspreis in US$")
+        .mark_line()
+        .encode(
+            x="Datum (J-M-T):T",
+            y="Schlusskurs in US$:Q",
+            color=alt.value("#cc0000"),
+            tooltip=["Datum (J-M-T):T", "Schlusskurs in US$:Q"],).interactive())
         st.altair_chart(line, use_container_width=True)
     except:
         st.write("⚠️Bitte andere Parameter wählen")
