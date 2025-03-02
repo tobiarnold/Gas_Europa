@@ -224,7 +224,7 @@ def main():
         natural_gas = natural_gas.rename(columns={"Close": "Schlusskurs in US$"})
         natural_gas["Datum (J-M-T)"] = pd.to_datetime(natural_gas.index)
         #natural_gas=natural_gas.rename(columns={"Date": "Datum (J-M-T)", "Close": "Schlusskurs in US$"})
-        line = alt.Chart(natural_gas, title="Erdgaspreis in US$").mark_line().encode(x="Datum (J-M-T):T", y="Schlusskurs in US$",
+        line = alt.Chart(natural_gas, title="Erdgaspreis in US$").mark_line().encode(x="Datum (J-M-T):T", y="Schlusskurs in US$::Q",
                                                                                  color=alt.value("#cc0000"),
                                                                                tooltip=["Datum (J-M-T):T",
                                                                                        "Schlusskurs in US$:Q"]).interactive()
