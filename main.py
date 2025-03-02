@@ -215,7 +215,7 @@ def main():
     except:
         st.write("⚠️Bitte andere Parameter wählen")
     try:
-        natural_gas = yf.download("NG=F", start=start_end[0], end=start_end[-1])["Close"]
+        natural_gas = yf.download("NG=F", start=start_end[0], end=start_end[-1])[["Close"]]
         #natural_gas=natural_gas.to_frame()
         #natural_gas["Date"] = natural_gas.index
         #natural_gas["Date"] = pd.to_datetime( natural_gas["Date"], format="%Y-%m-%d").dt.date
