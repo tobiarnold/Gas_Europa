@@ -4,7 +4,7 @@ import requests
 from datetime import date, timedelta
 import pandas as pd
 import altair as alt
-import time
+#import time
 
 
 def main():
@@ -216,7 +216,7 @@ def main():
     except:
         st.write("⚠️Bitte andere Parameter wählen")
     try:
-        time.sleep(2)
+       # time.sleep(2)
         natural_gas = yf.download("NG=F", start=start_end[0], end=start_end[-1],auto_adjust=False)[["Close"]]
         natural_gas["Datum (J-M-T)"] = pd.to_datetime(natural_gas.index)
         natural_gas.columns = [col[0] for col in natural_gas.columns]  # Nur den ersten Level behalten
